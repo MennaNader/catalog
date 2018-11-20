@@ -1,0 +1,36 @@
+<html>
+
+<body>
+
+    <h1>{{category.name}}</h1>
+
+    <a href='{{url_for("newListItem", category_id = category.id)}}'>Add New Item</a>
+    <a href='{{url_for("deleteCategory", category_id = category.id)}}'>Delete Category</a>
+    <a href='{{url_for("editCategory", category_id = category.id)}}'>Edit Category</a>
+
+    <ul>
+
+        {% for i in items %}
+
+        <li>
+
+            <p>{{i.name}}</p>
+
+            <p>{{i.description}}</p>
+
+            <p>{{i.created_date}}</p>
+
+            <p> {{i.price}} </p>
+
+            <a href='{{url_for("editListItem", category_id = category.id, list_item_id = i.id)}}'>Edit</a>
+
+            <a href='{{url_for("deleteListItem", category_id = category.id, list_item_id = i.id)}}'>Delete</a>
+        </li>
+
+
+        {% endfor %}
+
+    </ul>
+</body>
+
+</html>

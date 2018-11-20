@@ -1,0 +1,33 @@
+<html>
+
+<body>
+
+    <h1>Sign up</h1>
+    {% with messages = get_flashed_messages() %} {% if messages %}
+    <ul class=flashes>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %} {% endwith %}
+
+    <form action='{{ url_for("new_user")}}' method='post'>
+
+
+        <p>email:</p>
+        <input type='email' size='30' name='email' placeholder='email'>
+
+        <p>password:</p>
+        <input type=password size='250' name='password' placeholder='******'>
+
+        <input type='submit' value='Sign up'>
+
+
+        <a href='{{url_for("categories")}}'> Cancel </a>
+
+    </form>
+
+
+</body>
+
+</html>

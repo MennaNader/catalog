@@ -1,0 +1,19 @@
+<html>
+
+<body>
+
+    <h1>Are you sure ypu want to sign out? </h1>
+
+    <form action='{{ url_for("logout")}}' method='post'>
+
+        <input type='submit' value='Yes'>
+
+
+        <a href='{{url_for("categories")}}'> Cancel </a>
+
+    </form>
+
+
+</body>
+
+</html>

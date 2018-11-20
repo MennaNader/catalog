@@ -1,0 +1,32 @@
+<html>
+
+<body>
+
+    <h1>log in </h1>
+    {% with messages = get_flashed_messages() %} {% if messages %}
+    <ul class=flashes>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %} {% endwith %}
+    <form action='{{ url_for("emailLogin")}}' method='post'>
+
+
+        <p>email:</p>
+        <input type='email' size='30' name='email'>
+
+        <p>password:</p>
+        <input type=password size='250' name='password'>
+
+        <input type='submit' value='Log in'>
+
+
+        <a href='{{url_for("categories")}}'> Cancel </a>
+
+    </form>
+
+
+</body>
+
+</html>

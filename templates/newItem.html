@@ -1,0 +1,27 @@
+<html>
+
+<body>
+
+    <h1>Create new Item in {{category.name}}</h1>
+
+    <form action='{{ url_for("newListItem", category_id = category.id)}}' method='post'>
+
+
+        <p>Name:</p>
+        <input type='text' size='30' name='name' placeholder='Item name'>
+
+        <p>Description:</p>
+        <input type='text' size='250' name='description' placeholder='Item description'>
+
+
+        <input type='submit' value='Create'>
+
+
+        <a href='{{url_for("category", category_id = category.id)}}'> Cancel </a>
+
+    </form>
+
+
+</body>
+
+</html>
