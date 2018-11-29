@@ -66,7 +66,7 @@ class User(Base):
         return user_id
 
 
-engine = create_engine('sqlite:///catalogapp.db')
+engine = create_engine('sqlite:///catalog.db')
 
 
 Base.metadata.create_all(engine)

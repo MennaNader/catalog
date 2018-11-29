@@ -19,7 +19,7 @@ app = Flask(__name__)
 app.config['SESSION_TYPE'] = 'filesystem'
 app.secret_key = "super secret key"
 
-engine = create_engine('sqlite:///catalogapp.db?check_same_thread=False')
+engine = create_engine('sqlite:///catalog.db?check_same_thread=False')
 Base.metadata.bind = engine
 
 DBSession = sessionmaker(bind=engine)
@@ -136,9 +136,11 @@ def new_user():
 
 @app.route('/')
 def categories():
-    categories = dbSession.query(Category).all()
-    return render_template('categories.html', categories=categories, logged=session['logged_in'])
-
+    if(session['logged_in']):
+        categories = dbSession.query(Category).all()
+        return render_template('categories.html', categories=categories, logged=session['logged_in'])
+    else:
+       return redirect(url_for('emailLogin'))     
 
 @app.route('/catalog/new/', methods=['GET', 'POST'])
 def newCategory():
@@ -279,9 +281,11 @@ def deleteListItem(category_id, list_item_id):
 
 @app.route('/JSON/')
 def categoriesJSON():
-    categories = dbSession.query(Category).all()
-    return jsonify({'categories': [c.serialize for c in categories]})
-
+    if session['logged_in']:
+        categories = dbSession.query(Category).all()
+        return jsonify({'categories': [c.serialize for c in categories]})
+    else: 
+         return redirect(url_for('emailLogin'))   
 
 @app.route('/catalog/new/JSON/', methods=['POST'])
 def newCategoryJSON():
